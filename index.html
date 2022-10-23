@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Breast Cancer Recurrence Prediction</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <img src="static/css/logo2.jpg" alt="logo">
+            <h1>
+                BREAST CANCER RISK ASSESSMENT
+            </h1>
+        </div>
+        <aside id="sidebar">
+            <p>
+                <ul>
+                    <li>This tool can only estimate the risk of recurrence of breast cancer on women</li>
+                    <li>The risk estimation of recurrence of breast cancer is for over next 5 years<br>
+                         (It cannot be used to estimate risk for women without a previous history of breast cancer) </li>
+                </ul>
+            </p>
+        </aside>
+        <div class="wrapper">
+            <form action="{{ url_for('predict')}}" method="POST">
+                <h3 class="h3">USER DETAILS:</h3>
+                <div class="input_fields">
+                    <label>Age</label>
+                    <select name="age">
+                        <option value="1">10-19</option>
+                        <option value="2">20-29</option>
+                        <option value="3">30-39</option>
+                        <option value="4">40-49</option>
+                        <option value="5">50-59</option>
+                        <option value="6">60-69</option>
+                        <option value="7">70-79</option>
+                        <option value="8">80-89</option>
+                        <option value="9">90-99</option>
+                    </select>
+                </div>
+                <div class="input_fields">
+                    <label>Menopause</label>
+                    <select name="meno">
+                        <option value="1">PreMenopause</option>
+                        <option value="2">Menopause before the age of 40</option>
+                        <option value="3">Menopause on or after the age of 40</option>
+                    </select>
+                </div>
+                <div class="input_fields">
+                    <label>Tumor Size</label>
+                    <select name="tumorSize">
+                        <option value="1">0-4</option>
+                        <option value="2">5-9</option>
+                        <option value="3">10-14</option>
+                        <option value="4">15-19</option>
+                        <option value="5">20-24</option>
+                        <option value="6">25-29</option>
+                        <option value="7">30-34</option>
+                        <option value="8">35-39</option>
+                        <option value="9">40-44</option>
+                        <option value="10">45-49</option>
+                        <option value="11">50-54</option>
+                        <option value="12">55-59</option>
+                    </select>
+                </div>
+                <div class="input_fields">
+                    <label>InvNodes</label>
+                    <select name="invNodes">
+                        <option value="1">0-2</option>
+                        <option value="2">3-5</option>
+                        <option value="3">6-8</option>
+                        <option value="4">9-11</option>
+                        <option value="5">12-14</option>
+                        <option value="6">15-17</option>
+                        <option value="7">18-20</option>
+                        <option value="8">21-23</option>
+                        <option value="9">24-26</option>
+                        <option value="10">27-29</option>
+                        <option value="11">30-32</option>
+                        <option value="12">33-35</option>
+                    </select>
+                    <div class="help-tip">
+                        <p>Number of axillary lymph nodes with visible metastic breast cancer at time of diagnosis</p>
+                    </div>
+                </div>
+                <div class="input_fields">
+                    <label>NodeCaps</label>
+                    <select name="nodecaps">
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                    </select>
+                    <div class="help-tip">
+                        <p>Presence of node in breast cap</p>
+                    </div>
+                </div>
+                <div class="input_fields">
+                    <label>Stage of cancer</label>
+                    <select name="degMalig">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input_fields">
+                    <label>Breast</label>
+                    <select name="breast">
+                        <option value="1">Right</option>
+                        <option value="2">Left</option>
+                    </select> 
+                </div>
+                <div class="input_fields">
+                    <label>Breast Quadrant</label>
+                    <select name="breast_quad">
+                        <option value="1">Left Up</option>
+                        <option value="2">Left Low</option>
+                        <option value="3">Right Up</option>
+                        <option value="4">Right Low</option>
+                        <option value="5">Central</option>
+                    </select> 
+                </div>
+                <div class="input_fields">
+                    <label>Radiation Therapy</label>
+                    <select name="irradiat">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="button">
+                    <input type="submit" value="CHECK">
+                </div>
+                
+            </form>
+        </div>
+        <div id="middlebar">
+            <p>
+                <h4>Some of the symptoms of recurrent breast cancer include:
+                    <ul>
+                        <p>Local Recurrence:</p>
+                        <li>A new lump in your breast or irregular area of firmness</li>
+                        <li>Redness or swelling of the skin in or around the breast area</li>
+                        <li>Nipple discharge, flattening or other changes to the nipple</li>
+                        <li>New thickening on or near the mastectomy scar</li>
+                    </ul>
+                    <ul>
+                        <p>Regional Recurrence:</p>
+                        <li>A lump or swelling in the lymph nodes under the arm, above the collarbone, or near the breastbone</li>
+                        <li>Swelling in the arm on the same side where the breast cancer was first found</li>
+                        <li>Constant pain in arm and shoulder or chest</li>
+                    </ul>
+                    <ul>
+                        <p>Distant Recurrence:</p>
+                        <li>Symptoms can vary depending on the location, and can include bone pain, 
+                            numbness or weakness anywhere in the body, constant dry cough, loss of appetite, severe headache, 
+                            vision problems, constant nausea, weight loss, seizures, loss of balance.</li>
+                    </ul>
+                </h4>
+                
+            </p>
+        </div>
+        <div class="res">
+                {{prediction_text}}
+        </div>
+    </body>
+</html>
